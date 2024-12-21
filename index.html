@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务安排</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            color: #4A90E2;
+        }
+
+        /* 任务列表的容器 */
+        .task-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        /* 主任务样式 */
+        .main-task {
+            display: flex;
+            align-items: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .main-task input[type="checkbox"] {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        /* 子任务列表样式 */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-left: 30px;
+        }
+
+        li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        li input[type="checkbox"] {
+            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* Hover 和交互效果 */
+        input[type="checkbox"]:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s;
+        }
+
+        /* 已完成的任务添加划线效果 */
+        input[type="checkbox"]:checked + span {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        /* 背景和间距调整 */
+        .task-container ul {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>任务安排</h1>
+    <div class="task-container">
+        <ul>
+            <li>
+                <label class="main-task">
+                    <input type="checkbox" class="main-task" data-group="group1">
+                    <span>1. 高代</span>
+                </label>
+                <ul>
+                    <li><input type="checkbox" class="sub-task group1"> <span>两次作业</span></li>
+                    <li><input type="checkbox" class="sub-task group1"> <span>做以前不会的练习题</span></li>
+                </ul>
+            </li>
+            <li>
+                <label class="main-task">
+                    <input type="checkbox" class="main-task" data-group="group2">
+                    <span>2. C语言</span>
+                </label>
+                <ul>
+                    <li><input type="checkbox" class="sub-task group2"> <span>实验作业</span></li>
+                    <li><input type="checkbox" class="sub-task group2"> <span>结构体笔记</span></li>
+                </ul>
+            </li>
+            <li>
+                <label class="main-task">
+                    <input type="checkbox" class="main-task" data-group="group3">
+                    <span>3. 数分</span>
+                </label>
+                <ul>
+                    <li><input type="checkbox" class="sub-task group3"> <span>写完题目</span></li>
+                    <li><input type="checkbox" class="sub-task group3"> <span>把不会的记在笔记本上</span></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // 获取所有主任务和子任务的复选框
+        const mainTasks = document.querySelectorAll('.main-task');
+        const subTasks = document.querySelectorAll('.sub-task');
+
+        // 当子任务状态改变时检查主任务状态
+        subTasks.forEach(subTask => {
+            subTask.addEventListener('change', () => {
+                const group = subTask.classList[1]; // 获取子任务所属组
+                const relatedSubTasks = document.querySelectorAll(`.sub-task.${group}`);
+                const mainTask = document.querySelector(`.main-task[data-group="${group}"]`);
+                
+                // 如果所有子任务都勾选，则主任务也勾选
+                mainTask.checked = Array.from(relatedSubTasks).every(task => task.checked);
+            });
+        });
+
+        // 当主任务状态改变时，更新所有子任务状态
+        mainTasks.forEach(mainTask => {
+            mainTask.addEventListener('change', () => {
+                const group = mainTask.getAttribute('data-group'); // 获取主任务所属组
+                const relatedSubTasks = document.querySelectorAll(`.sub-task.${group}`);
+                
+                // 子任务的状态与主任务一致
+                relatedSubTasks.forEach(subTask => {
+                    subTask.checked = mainTask.checked;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
