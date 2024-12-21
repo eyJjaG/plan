@@ -7,123 +7,177 @@
     <style>
         /* 全局样式 */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #d9e4f5);
             margin: 0;
             padding: 0;
+            color: #333;
         }
 
         h1 {
             text-align: center;
-            font-size: 2em;
-            margin: 20px 0;
-            color: #4A90E2;
+            font-size: 2.8em;
+            margin: 30px 0;
+            color: #333;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* 任务列表的容器 */
+        /* 卡片容器 */
         .task-container {
-            max-width: 600px;
-            margin: 20px auto;
-            background: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            max-width: 750px;
+            margin: 40px auto;
+            background: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .task-header {
+            background: linear-gradient(135deg, #4e92df, #6ab1f5);
+            color: #fff;
             padding: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .task-content {
+            padding: 25px;
         }
 
         /* 主任务样式 */
         .main-task {
             display: flex;
             align-items: center;
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .main-task input[type="checkbox"] {
-            margin-right: 10px;
-            width: 20px;
-            height: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
             cursor: pointer;
         }
 
-        /* 子任务列表样式 */
+        .main-task:hover {
+            background-color: #f7f9fc;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-task input[type="checkbox"] {
+            margin-right: 15px;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #4e92df;
+        }
+
+        .main-task span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-task span::before {
+            content: '📁';
+            font-size: 1.5em;
+        }
+
+        /* 子任务样式 */
         ul {
             list-style: none;
             padding: 0;
-            margin-left: 30px;
+            margin: 0;
         }
 
         li {
-            margin: 10px 0;
+            margin: 15px 0;
             display: flex;
             align-items: center;
+            padding: 10px 15px;
+            padding-left: 40px;
+            border-radius: 6px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        li:hover {
+            background: #f0f4f8;
+            transform: translateX(5px);
         }
 
         li input[type="checkbox"] {
             margin-right: 10px;
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;
+            accent-color: #4e92df;
         }
 
-        /* Hover 和交互效果 */
-        input[type="checkbox"]:hover {
-            transform: scale(1.1);
+        li span {
+            font-size: 1em;
+            transition: color 0.3s, text-decoration 0.3s;
+        }
+
+        /* 子任务完成样式 */
+        input[type="checkbox"]:checked + span {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+
+        /* 主任务完成样式 */
+        .main-task input[type="checkbox"]:checked + span {
+            color: #4caf50;
+        }
+
+        /* 动画效果 */
+        input[type="checkbox"] {
             transition: transform 0.2s;
         }
 
-        /* 已完成的任务添加划线效果 */
-        input[type="checkbox"]:checked + span {
-            text-decoration: line-through;
-            color: #999;
-        }
-
-        /* 背景和间距调整 */
-        .task-container ul {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        input[type="checkbox"]:hover {
+            transform: scale(1.2);
         }
     </style>
 </head>
 <body>
     <h1>任务安排</h1>
     <div class="task-container">
-        <ul>
-            <li>
-                <label class="main-task">
-                    <input type="checkbox" class="main-task" data-group="group1">
-                    <span>1. 高代</span>
-                </label>
-                <ul>
-                    <li><input type="checkbox" class="sub-task group1"> <span>两次作业</span></li>
-                    <li><input type="checkbox" class="sub-task group1"> <span>做以前不会的练习题</span></li>
-                </ul>
-            </li>
-            <li>
-                <label class="main-task">
-                    <input type="checkbox" class="main-task" data-group="group2">
-                    <span>2. C语言</span>
-                </label>
-                <ul>
-                    <li><input type="checkbox" class="sub-task group2"> <span>实验作业</span></li>
-                    <li><input type="checkbox" class="sub-task group2"> <span>结构体笔记</span></li>
-                </ul>
-            </li>
-            <li>
-                <label class="main-task">
-                    <input type="checkbox" class="main-task" data-group="group3">
-                    <span>3. 数分</span>
-                </label>
-                <ul>
-                    <li><input type="checkbox" class="sub-task group3"> <span>写完题目</span></li>
-                    <li><input type="checkbox" class="sub-task group3"> <span>把不会的记在笔记本上</span></li>
-                </ul>
-            </li>
-        </ul>
+        <div class="task-header">我的任务</div>
+        <div class="task-content">
+            <ul>
+                <li>
+                    <label class="main-task">
+                        <input type="checkbox" class="main-task" data-group="group1">
+                        <span>1. 高代</span>
+                    </label>
+                    <ul>
+                        <li><input type="checkbox" class="sub-task group1"> <span>两次作业</span></li>
+                        <li><input type="checkbox" class="sub-task group1"> <span>做以前不会的练习题</span></li>
+                    </ul>
+                </li>
+                <li>
+                    <label class="main-task">
+                        <input type="checkbox" class="main-task" data-group="group2">
+                        <span>2. C语言</span>
+                    </label>
+                    <ul>
+                        <li><input type="checkbox" class="sub-task group2"> <span>实验作业</span></li>
+                        <li><input type="checkbox" class="sub-task group2"> <span>结构体笔记</span></li>
+                    </ul>
+                </li>
+                <li>
+                    <label class="main-task">
+                        <input type="checkbox" class="main-task" data-group="group3">
+                        <span>3. 数分</span>
+                    </label>
+                    <ul>
+                        <li><input type="checkbox" class="sub-task group3"> <span>写完题目</span></li>
+                        <li><input type="checkbox" class="sub-task group3"> <span>把不会的记在笔记本上</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <script>
