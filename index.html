@@ -18,6 +18,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden; /* 防止横向滚动条 */
         }
 
         h1 {
@@ -27,6 +28,64 @@
             color: #333;
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 100%;
+        }
+
+        /* 密码保护层样式 */
+        #password-prompt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #password-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        #password-container h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none !important; /* 确保隐藏 */
         }
 
         /* 卡片容器 */
@@ -169,6 +228,14 @@
     </style>
 </head>
 <body>
+<div id="password-prompt">
+    <div id="password-container">
+        <h2>请输入密码</h2>
+        <input type="password" id="password-input" placeholder="密码">
+        <button onclick="checkPassword()">进入</button>
+    </div>
+</div>
+<div id="content" class="hidden">
     <h1>任务安排</h1>
     <div class="task-container">
         <div class="task-header">我的任务</div>
@@ -207,36 +274,51 @@
             </ul>
         </div>
     </div>
+</div>
 
-    <script>
-        // 获取所有主任务和子任务的复选框
-        const mainTasks = document.querySelectorAll('.main-task');
-        const subTasks = document.querySelectorAll('.sub-task');
+<script>
+    function checkPassword() {
+        var password = document.getElementById('password-input').value;
+        // 这里设置你的密码
+        var correctPassword = '114514';
+        
+        if (password === correctPassword) {
+            // 直接操作DOM节点，确保样式更新立即生效
+            document.getElementById('password-prompt').classList.add('hidden');
+            document.getElementById('content').classList.remove('hidden');
+        } else {
+            alert('密码错误，请重试！');
+        }
+    }
 
-        // 当子任务状态改变时检查主任务状态
-        subTasks.forEach(subTask => {
-            subTask.addEventListener('change', () => {
-                const group = subTask.classList[1]; // 获取子任务所属组
-                const relatedSubTasks = document.querySelectorAll(`.sub-task.${group}`);
-                const mainTask = document.querySelector(`.main-task[data-group="${group}"]`);
-                
-                // 如果所有子任务都勾选，则主任务也勾选
-                mainTask.checked = Array.from(relatedSubTasks).every(task => task.checked);
+    // 获取所有主任务和子任务的复选框
+    const mainTasks = document.querySelectorAll('.main-task');
+    const subTasks = document.querySelectorAll('.sub-task');
+
+    // 当子任务状态改变时检查主任务状态
+    subTasks.forEach(subTask => {
+        subTask.addEventListener('change', () => {
+            const group = subTask.classList[1]; // 获取子任务所属组
+            const relatedSubTasks = document.querySelectorAll(`.sub-task.${group}`);
+            const mainTask = document.querySelector(`.main-task[data-group="${group}"]`);
+            
+            // 如果所有子任务都勾选，则主任务也勾选
+            mainTask.checked = Array.from(relatedSubTasks).every(task => task.checked);
+        });
+    });
+
+    // 当主任务状态改变时，更新所有子任务状态
+    mainTasks.forEach(mainTask => {
+        mainTask.addEventListener('change', () => {
+            const group = mainTask.getAttribute('data-group'); // 获取主任务所属组
+            const relatedSubTasks = document.querySelectorAll(`.sub-task.${group}`);
+            
+            // 子任务的状态与主任务一致
+            relatedSubTasks.forEach(subTask => {
+                subTask.checked = mainTask.checked;
             });
         });
-
-        // 当主任务状态改变时，更新所有子任务状态
-        mainTasks.forEach(mainTask => {
-            mainTask.addEventListener('change', () => {
-                const group = mainTask.getAttribute('data-group'); // 获取主任务所属组
-                const relatedSubTasks = document.querySelectorAll(`.sub-task.${group}`);
-                
-                // 子任务的状态与主任务一致
-                relatedSubTasks.forEach(subTask => {
-                    subTask.checked = mainTask.checked;
-                });
-            });
-        });
-    </script>
+    });
+</script>
 </body>
 </html>
