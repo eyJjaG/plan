@@ -9,7 +9,7 @@
     <style>
         /* 全局样式 */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI'， Tahoma， Geneva， Verdana， sans-serif;
             background: linear-gradient(135deg, #f0f4f8, #d9e4f5);
             margin: 0;
             padding: 0;
@@ -26,7 +26,7 @@
             font-size: 2.8em;
             margin: 30px 0;
             color: #333;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 4px 15px rgba(0， 0， 0， 0.2);
             width: 100%;
         }
 
@@ -37,7 +37,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0， 0， 0， 0.7);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -48,7 +48,7 @@
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 15px rgba(0， 0， 0， 0.2);
             text-align: center;
             max-width: 400px;
             width: 90%;
@@ -84,22 +84,22 @@
             background-color: #45a049;
         }
 
-        .hidden {
+        。hidden {
             display: none !important; /* 确保隐藏 */
         }
 
         /* 卡片容器 */
-        .task-container {
+        。task-container {
             max-width: 750px;
             width: 90%;
             margin: 20px auto;
             background: #ffffff;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 25px rgba(0， 0， 0， 0.15);
             border-radius: 15px;
             overflow: hidden;
         }
 
-        .task-header {
+        。task-header {
             background: linear-gradient(135deg, #4e92df, #6ab1f5);
             color: #fff;
             padding: 20px;
@@ -107,15 +107,15 @@
             font-weight: bold;
             text-align: center;
             letter-spacing: 1px;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 4px 10px rgba(0， 0， 0， 0.2);
         }
 
-        .task-content {
+        。task-content {
             padding: 25px;
         }
 
         /* 主任务样式 */
-        .main-task {
+        。main-task {
             display: flex;
             align-items: center;
             font-size: 1.3em;
@@ -123,16 +123,16 @@
             margin: 20px 0;
             padding: 15px;
             border-radius: 8px;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            transition: background-color 0.3s， box-shadow 0.3s;
             cursor: pointer;
         }
 
-        .main-task:hover {
+        。main-task:hover {
             background-color: #f7f9fc;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0， 0， 0， 0.1);
         }
 
-        .main-task input[type="checkbox"] {
+        。main-task input[type="checkbox"] {
             margin-right: 15px;
             width: 22px;
             height: 22px;
@@ -140,13 +140,13 @@
             accent-color: #4e92df;
         }
 
-        .main-task span {
+        。main-task span {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .main-task span::before {
+        。main-task span::before {
             content: '\f07b'; /* 使用Font Awesome的文件夹图标 */
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
@@ -167,7 +167,7 @@
             padding: 10px 15px;
             padding-left: 40px;
             border-radius: 6px;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s， transform 0.2s;
         }
 
         li:hover {
@@ -185,7 +185,7 @@
 
         li span {
             font-size: 1em;
-            transition: color 0.3s, text-decoration 0.3s;
+            transition: color 0.3s， text-decoration 0.3s;
         }
 
         /* 子任务完成样式 */
@@ -195,7 +195,7 @@
         }
 
         /* 主任务完成样式 */
-        .main-task input[type="checkbox"]:checked + span {
+        。main-task input[type="checkbox"]:checked + span {
             color: #4caf50;
         }
 
@@ -213,11 +213,11 @@
                 font-size: 2.2em;
             }
 
-            .main-task {
+            。main-task {
                 font-size: 1.1em;
             }
 
-            .main-task span::before {
+            。main-task span::before {
                 font-size: 1.3em;
             }
 
@@ -236,7 +236,7 @@
     </div>
 </div>
 <div id="content" class="hidden">
-    <h1>任务安排</h1>
+    <h1>周末安排</h1>
     <div class="task-container">
         <div class="task-header">我的任务</div>
         <div class="task-content">
@@ -244,40 +244,31 @@
                 <li>
                     <label class="main-task">
                         <input type="checkbox" class="main-task" data-group="group1">
-                        <span>1. 高代</span>
+                        <span>1. 数分</span>
                     </label>
                     <ul>
-                        <li><input type="checkbox" class="sub-task group1"> <span>整理模糊的概念</span></li>
-                        <li><input type="checkbox" class="sub-task group1"> <span>做以前不会的练习题</span></li>
+                        <li><input type="checkbox" class="sub-task group1"> <span>刷一下积分题</span></li>
+                        <li><input type="checkbox" class="sub-task group1"> <span>做l掌握求定积分方法</span></li>
                     </ul>
                 </li>
                 <li>
                     <label class="main-task">
                         <input type="checkbox" class="main-task" data-group="group2">
-                        <span>2. C语言</span>
+                        <span>2. C++</span>
                     </label>
                     <ul>
-                        <li><input type="checkbox" class="sub-task group2"> <span>做考试样卷</span></li>
-                        <li><input type="checkbox" class="sub-task group2"> <span>结构体笔记</span></li>
+                        <li><input type="checkbox" class="sub-task group2"> <span>面向对象6p</span></li>
+                        <li><input type="checkbox" class="sub-task group2"> <span>算法入门，LeetCode了解</span></li>
                     </ul>
                 </li>
                 <li>
                     <label class="main-task">
                         <input type="checkbox" class="main-task" data-group="group3">
-                        <span>3. 数分</span>
+                        <span>3. 高代</span>
                     </label>
                     <ul>
-                        <li><input type="checkbox" class="sub-task group3"> <span>复习不会的题目</span></li>
-                        <li><input type="checkbox" class="sub-task group3"> <span>复习连续性相关问题</span></li>
-                    </ul>
-                </li>
-                <li>
-                    <label class="main-task">
-                        <input type="checkbox" class="main-task" data-group="group4">
-                        <span>4. 习思</span>
-                    </label>
-                    <ul>
-                        <li><input type="checkbox" class="sub-task group3"> <span>背！背！背！！！</span></li>
+                        <li><input type="checkbox" class="sub-task group3"> <span>整理矩阵相关知识</span></li>
+                        <li><input type="checkbox" class="sub-task group3"> <span>把最近两次不会的题搞懂</span></li>
                     </ul>
                 </li>
             </ul>
@@ -287,44 +278,44 @@
 
 <script>
     function checkPassword() {
-        var password = document.getElementById('password-input').value;
+        var password = document。getElementById('password-input')。value;
         // 这里设置你的密码
         var correctPassword = '114514';
         
         if (password === correctPassword) {
             // 直接操作DOM节点，确保样式更新立即生效
-            document.getElementById('password-prompt').classList.add('hidden');
-            document.getElementById('content').classList.remove('hidden');
+            document。getElementById('password-prompt')。classList。add('hidden');
+            document。getElementById('content')。classList。remove('hidden');
         } else {
             alert('密码错误，请重试！');
         }
     }
 
     // 获取所有主任务和子任务的复选框
-    const mainTasks = document.querySelectorAll('.main-task');
-    const subTasks = document.querySelectorAll('.sub-task');
+    const mainTasks = document。querySelectorAll('.main-task');
+    const subTasks = document。querySelectorAll('.sub-task');
 
     // 当子任务状态改变时检查主任务状态
-    subTasks.forEach(subTask => {
-        subTask.addEventListener('change', () => {
-            const group = subTask.classList[1]; // 获取子任务所属组
-            const relatedSubTasks = document.querySelectorAll(`.sub-task.${group}`);
-            const mainTask = document.querySelector(`.main-task[data-group="${group}"]`);
+    subTasks。forEach(subTask => {
+        subTask。addEventListener('change'， () => {
+            const group = subTask。classList[1]; // 获取子任务所属组
+            const relatedSubTasks = document。querySelectorAll(`.sub-task.${group}`);
+            const mainTask = document。querySelector(`.main-task[data-group="${group}"]`);
             
             // 如果所有子任务都勾选，则主任务也勾选
-            mainTask.checked = Array.from(relatedSubTasks).every(task => task.checked);
+            mainTask。checked = Array。from(relatedSubTasks)。every(task => task。checked);
         });
     });
 
     // 当主任务状态改变时，更新所有子任务状态
-    mainTasks.forEach(mainTask => {
-        mainTask.addEventListener('change', () => {
-            const group = mainTask.getAttribute('data-group'); // 获取主任务所属组
-            const relatedSubTasks = document.querySelectorAll(`.sub-task.${group}`);
+    mainTasks。forEach(mainTask => {
+        mainTask。addEventListener('change'， () => {
+            const group = mainTask。getAttribute('data-group'); // 获取主任务所属组
+            const relatedSubTasks = document。querySelectorAll(`.sub-task.${group}`);
             
             // 子任务的状态与主任务一致
-            relatedSubTasks.forEach(subTask => {
-                subTask.checked = mainTask.checked;
+            relatedSubTasks。forEach(subTask => {
+                subTask。checked = mainTask。checked;
             });
         });
     });
